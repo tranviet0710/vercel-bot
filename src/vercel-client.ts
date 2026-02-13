@@ -44,7 +44,7 @@ export class VercelClient {
 
   async getDeployments(limit: number = 5): Promise<Deployment[]> {
     try {
-      const params: any = { limit };
+      const params: Record<string, string | number> = { limit };
       if (this.teamId) {
         params.teamId = this.teamId;
       }
@@ -62,7 +62,7 @@ export class VercelClient {
 
   async getDeployment(deploymentId: string): Promise<Deployment> {
     try {
-      const params: any = {};
+      const params: Record<string, string> = {};
       if (this.teamId) {
         params.teamId = this.teamId;
       }
@@ -82,7 +82,7 @@ export class VercelClient {
         throw new Error('Project name is required to trigger deployment');
       }
 
-      const params: any = {};
+      const params: Record<string, string> = {};
       if (this.teamId) {
         params.teamId = this.teamId;
       }
@@ -111,7 +111,7 @@ export class VercelClient {
 
   async cancelDeployment(deploymentId: string): Promise<void> {
     try {
-      const params: any = {};
+      const params: Record<string, string> = {};
       if (this.teamId) {
         params.teamId = this.teamId;
       }
@@ -139,8 +139,9 @@ export class VercelClient {
 
     const emoji = statusEmoji[deployment.state] || '❓';
     const date = new Date(deployment.created).toLocaleString();
-    const commitInfo = deployment.meta?.githubCommitMessage 
-      ? `\n📝 ${deployment.meta.githubCommitMessage.substring(0, 50)}...`
+    const commitMsg = deployment.meta?.githubCommitMessage;
+    const commitInfo = commitMsg
+      ? `\n📝 ${commitMsg.length > 50 ? commitMsg.substring(0, 50) + '...' : commitMsg}`
       : '';
 
     return `${emoji} *${deployment.state}*\n` +
