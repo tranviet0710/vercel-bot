@@ -20,6 +20,9 @@
   "author": "tranviet0710",
   "license": "MIT",
   "type": "commonjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "bugs": {
     "url": "https://github.com/tranviet0710/vercel-bot/issues"
   },

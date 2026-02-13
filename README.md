@@ -13,7 +13,7 @@ A powerful CLI bot to manage your Vercel projects with ease. This tool provides 
 
 ## Prerequisites
 
-- Node.js 16.x or higher
+- Node.js 20.x or higher
 - A Vercel account
 - Vercel API token
 

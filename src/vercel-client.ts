@@ -22,6 +22,13 @@ export interface VercelDeployment {
   };
 }
 
+export interface VercelUser {
+  uid: string;
+  email: string;
+  username: string;
+  name?: string;
+}
+
 export class VercelClient {
   private client: AxiosInstance;
   private token: string;
@@ -119,7 +126,7 @@ export class VercelClient {
   /**
    * Get information about the authenticated user
    */
-  async getUser(): Promise<any> {
+  async getUser(): Promise<VercelUser> {
     try {
       const response = await this.client.get('/v2/user');
       return response.data.user;
